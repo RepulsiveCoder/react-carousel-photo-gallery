@@ -1,8 +1,6 @@
-'use client'
-
 import React from 'react';
 import { CustomTooltip } from './CustomTooltip';
-import './CoderCarousel.css';
+import './CarouselPhotoGallery.css';
 
 export type SvgContainerProps = {
     height?: string | number;
@@ -34,7 +32,7 @@ const FullScreenExitIcon = ({height = '60px', width = '60px', className='', colo
     );
 };
 
-type CoderCarouselProps = {
+type CarouselPhotoGalleryProps = {
     children: React.ReactNode[];
     slideDelay?: number;
     startIndex?: number;
@@ -47,7 +45,7 @@ type CoderCarouselProps = {
     fullScreenExitButtonIcon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
 }
 
-const CoderCarousel = ({
+const CarouselPhotoGallery = ({
     children,
     slideDelay = 5000,
     startIndex = 0,
@@ -58,13 +56,13 @@ const CoderCarousel = ({
     prevButton = <span>⟨</span>,
     fullScreenButtonIcon = <FullScreenIcon width='20px' height='16px' color='var(--accent-color)' />,
     fullScreenExitButtonIcon = <FullScreenExitIcon width='20px' height='16px' color='var(--accent-color)' />
-}: CoderCarouselProps) => {
+}: CarouselPhotoGalleryProps) => {
     const [activeIndex, setActiveIndex] = React.useState(startIndex | 0);
     const [nextIndex, setNextIndex] = React.useState(((startIndex | 0) + 1) % children.length);
     const [prevIndex, setPrevIndex] = React.useState(((startIndex | 0) - 1 + children.length) % children.length);
     const [maximized, setMaximized] = React.useState<boolean>(false);
     const [fullscreenMode, setFullscreenMode] = React.useState<boolean>(false);
-    const coderCarouselWindowContainer = React.useRef<HTMLDivElement | null>(null);
+    const CarouselPhotoGalleryWindowContainer = React.useRef<HTMLDivElement | null>(null);
     const intervalHandler = React.useRef<NodeJS.Timeout | null>(null);
     const pauseSlideShow = React.useRef<boolean>(false);
 
@@ -90,8 +88,8 @@ const CoderCarousel = ({
 
     React.useEffect(() => {
         if (fullscreenMode) {
-            coderCarouselWindowContainer.current?.requestFullscreen();
-        } else if (document.fullscreenElement !== null && document.fullscreenElement === coderCarouselWindowContainer.current) {
+            CarouselPhotoGalleryWindowContainer.current?.requestFullscreen();
+        } else if (document.fullscreenElement !== null && document.fullscreenElement === CarouselPhotoGalleryWindowContainer.current) {
             document.exitFullscreen();
         }
     }, [fullscreenMode]);
@@ -160,7 +158,7 @@ const CoderCarousel = ({
 
 
     return (
-        <div className={`rcfg-content-wrapper ${maximized ? ' carouselMaximizedCover' : ''}`} style={{ width: !maximized && width ? `${width}px` : '100%' }} ref={coderCarouselWindowContainer}>
+        <div className={`rcpg-content-wrapper ${maximized ? ' carouselMaximizedCover' : ''}`} style={{ width: !maximized && width ? `${width}px` : '100%' }} ref={CarouselPhotoGalleryWindowContainer}>
             <span className={`closeButton ${maximized ? '' : 'hidden'}`} onClick={() => { if (fullscreenMode) setFullscreenMode(false); else setMaximized(false); }}>X</span>
             {maximized &&
                 <button className='fullscreenModeButton' onClick={() => setFullscreenMode((fullscreenMode) => !fullscreenMode)}
@@ -239,4 +237,4 @@ const CoderCarousel = ({
 }
 
 
-export default CoderCarousel;
+export default CarouselPhotoGallery;

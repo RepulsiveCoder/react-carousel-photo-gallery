@@ -73,8 +73,8 @@
             }
 
             .carouselBottomLinks.displayThumbs {
-                width: 64px;
-                height: 36px
+                width: 64px !important;
+                height: 36px !important;
             }
 
 
