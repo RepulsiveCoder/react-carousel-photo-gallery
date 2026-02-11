@@ -1,7 +1,7 @@
 {
   "name": "react-carousel-photo-gallery",
-  "version": "0.0.1",
-  "description": "A lightweight, high-performance React input library featuring Material-style floating labels with minimal DOM footprint. Supports Input, TextArea, and Select with a unique dual-text feature (separate placeholder and label). Smooth CSS animations, border-integrated labels, and zero fieldset dependencies.",
+  "version": "1.0.0",
+  "description": "A lightweight, customizable React carousel component specifically designed for photo galleries, featuring thumbnail support, fullscreen mode, and flexible navigation overrides.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
@@ -9,7 +9,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
-  "keywords": [],
+  "keywords": ["react", "carousel", "photo gallery", "thumbnail", "fullscreen"],
   "author": {
     "name": "Abdullah Ibne Alam",
     "url": "https://abdullahibnealam.com"

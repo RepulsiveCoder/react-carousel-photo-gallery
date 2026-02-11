@@ -21,7 +21,7 @@ yarn add react-carousel-photo-gallery
 ## Quick Start
 
 ```jsx
-import { CoderCarousel } from 'react-carousel-photo-gallery';
+import { CarouselPhotoGallery } from 'react-carousel-photo-gallery';
 
 
 const App = () => {
@@ -38,13 +38,13 @@ const App = () => {
   ];
 
   return (
-    <CoderCarousel
+    <CarouselPhotoGallery
       displayThumbs={true}
       thumbs={thumbnails}
       slideDelay={3000}
     >
       {images}
-    </CoderCarousel>
+    </CarouselPhotoGallery>
   );
 };
 ```
@@ -54,7 +54,7 @@ const App = () => {
 You can wrap your images in a container to display titles or overlays. Here is how to implement the imageWithCaptionContainer structure within the carousel:
 
 ```jsx
-import { CoderCarousel } from 'react-carousel-photo-gallery';
+import { CarouselPhotoGallery } from 'react-carousel-photo-gallery';
 
 const App = () => {
   const slides = [
@@ -70,12 +70,12 @@ const App = () => {
 
   return (
     <div style={{ width: '800px', margin: '0 auto' }}>
-      <CoderCarousel
+      <CarouselPhotoGallery
         displayThumbs={false}
         width="100%"
       >
         {slides}
-      </CoderCarousel>
+      </CarouselPhotoGallery>
     </div>
   );
 };
