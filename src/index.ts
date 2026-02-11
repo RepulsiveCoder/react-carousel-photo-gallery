@@ -1,3 +1,3 @@
-import CoderCarousel from "./components/CoderCarousel";
+import CarouselPhotoGallery from "./components/CarouselPhotoGallery";
 
-export default CoderCarousel;
+export default CarouselPhotoGallery;
