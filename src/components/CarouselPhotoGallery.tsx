@@ -1,5 +1,5 @@
 import React from 'react';
-import { CustomTooltip } from './CustomTooltip';
+import RadixTooltip from 'react-radix-tooltip';
 import './CarouselPhotoGallery.css';
 
 export type SvgContainerProps = {
@@ -197,10 +197,10 @@ const CarouselPhotoGallery = ({
                                     }}
                                 >
                                     {displayThumbs && thumbs.length > 0 && thumbs[index] && (
-                                        <CustomTooltip title={<>{thumbs[index]}</>}
+                                        <RadixTooltip title={<>{thumbs[index]}</>}
                                         >
                                             <span>{thumbs[index]}</span>
-                                        </CustomTooltip>
+                                        </RadixTooltip>
                                     )}
                                 </button>
                             );
@@ -211,10 +211,10 @@ const CarouselPhotoGallery = ({
                         onClick={(e) => { e.preventDefault(); slidePrev(true); }}
                     >
                         {displayThumbs && thumbs.length > 0 && thumbs[prevIndex] && (
-                            <CustomTooltip title={<>{thumbs[prevIndex]}</>}
+                            <RadixTooltip title={<>{thumbs[prevIndex]}</>}
                             >
                                 {prevButton ? prevButton : <span>⟨</span>}
-                            </CustomTooltip>
+                            </RadixTooltip>
                         )}
                         {!(displayThumbs) && <>{prevButton ? prevButton : <span>⟨</span>}</>}
                     </button>
@@ -223,10 +223,10 @@ const CarouselPhotoGallery = ({
                         onClick={(e) => { e.preventDefault(); slideNext(true); }}
                     >
                         {displayThumbs && thumbs.length > 0 && thumbs[nextIndex] && (
-                            <CustomTooltip title={<>{thumbs[nextIndex]}</>}
+                            <RadixTooltip title={<>{thumbs[nextIndex]}</>}
                             >
                                 {nextButton ? nextButton : <span>⟩</span>}
-                            </CustomTooltip>
+                            </RadixTooltip>
                         )}
                         {!(displayThumbs && thumbs.length > 0 && thumbs[nextIndex]) && <>{nextButton ? nextButton : <span>⟩</span>}</>}
                     </button>
