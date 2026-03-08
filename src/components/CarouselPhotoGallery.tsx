@@ -32,7 +32,7 @@ const FullScreenExitIcon = ({height = '60px', width = '60px', className='', colo
     );
 };
 
-type CarouselPhotoGalleryProps = {
+export type CarouselPhotoGalleryProps = {
     children: React.ReactNode[];
     slideDelay?: number;
     startIndex?: number;
