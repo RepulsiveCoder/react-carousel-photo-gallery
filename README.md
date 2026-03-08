@@ -98,8 +98,8 @@ export default App;
 | `width` | `string` | `"100%"` | Width of the carousel container. Accepts any valid CSS width value. |
 | `displayThumbs` | `boolean` | `false` | If set to `true`, thumbnail previews will be displayed below the main carousel. |
 | `thumbs` | `React.ReactNode[]` | `[]` | Optional thumbnail elements corresponding to each slide. |
-| `nextButton` | `React.ReactElement` | `Default Button` | Custom component used for the **Next** navigation button. |
-| `prevButton` | `React.ReactElement` | `Default Button` | Custom component used for the **Previous** navigation button. |
+| `nextButton` | `React.ReactElement` | `<span>⟩</span>` | Custom component used for the **Next** navigation button. |
+| `prevButton` | `React.ReactElement` | `<span>⟨</span>` | Custom component used for the **Previous** navigation button. |
 | `fullScreenButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for entering fullscreen mode. |
 | `fullScreenExitButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for exiting fullscreen mode. |
 
