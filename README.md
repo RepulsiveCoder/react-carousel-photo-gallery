@@ -90,29 +90,31 @@ export default App;
 
 ## Props
 
-| Prop              | Type                                     | Default     | Description                                                                |
-| ----------------- | ---------------------------------------- | ----------- | -------------------------------------------------------------------------- |
-| `title`           | `React.ReactNode`                        | —           | Content displayed inside the tooltip.                                      |
-| `children`        | `React.ReactElement`                     | —           | The element that triggers the tooltip. Must be a single React element.     |
-| `container`       | `HTMLDivElement \| null`                 | `undefined` | Optional container element for rendering the tooltip (useful for portals). |
-| `placement`       | `'top' \| 'bottom' \| 'left' \| 'right'` | `'top'`     | Position of the tooltip relative to the trigger element.                   |
-| `arrow`           | `boolean`                                | `false`     | Displays an arrow pointing to the trigger element.                         |
-| `delayDuration`   | `number`                                 | `0`         | Delay in milliseconds before showing the tooltip.                          |
-| `enterTouchDelay` | `number`                                 | `0`         | Delay in milliseconds before showing the tooltip on touch devices.         |
-| `leaveTouchDelay` | `number`                                 | `1500`      | Delay in milliseconds before hiding the tooltip on touch devices.          |
-| `style`           | `React.CSSProperties`                    | `undefined` | Inline styles applied to the tooltip container.                            |
-| `slotProps`       | `{ tooltip?, content?, arrow? }`         | `undefined` | Advanced customization for tooltip internal slots.                         |
+| Prop | Type | Default | Description |
+|-----|------|---------|-------------|
+| `children` | `React.ReactNode[]` | **Required** | The slides to be displayed inside the carousel gallery. Each child represents a slide. |
+| `slideDelay` | `number` | `3000` | Delay in milliseconds between automatic slide transitions. |
+| `startIndex` | `number` | `0` | Index of the slide that should be displayed first when the carousel loads. |
+| `width` | `string` | `"100%"` | Width of the carousel container. Accepts any valid CSS width value. |
+| `displayThumbs` | `boolean` | `false` | If set to `true`, thumbnail previews will be displayed below the main carousel. |
+| `thumbs` | `React.ReactNode[]` | `[]` | Optional thumbnail elements corresponding to each slide. |
+| `nextButton` | `React.ReactElement` | `Default Button` | Custom component used for the **Next** navigation button. |
+| `prevButton` | `React.ReactElement` | `Default Button` | Custom component used for the **Previous** navigation button. |
+| `fullScreenButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for entering fullscreen mode. |
+| `fullScreenExitButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for exiting fullscreen mode. |
+
 
 ---
 
-## `slotProps` Structure
+## SvgContainer Props
 
-| Key       | Type                      | Description                                          |
-| --------- | ------------------------- | ---------------------------------------------------- |
-| `tooltip` | `Record<string, unknown>` | Custom props applied to the tooltip wrapper element. |
-| `content` | `Record<string, unknown>` | Custom props applied to the tooltip content element. |
-| `arrow`   | `Record<string, unknown>` | Custom props applied to the arrow element.           |
-
+| Prop | Type | Default | Description |
+|-----|------|---------|-------------|
+| `height` | `string \| number` | `auto` | Height of the SVG container. Accepts any valid CSS value (e.g., `100`, `"100px"`, `"2rem"`). |
+| `width` | `string \| number` | `auto` | Width of the SVG container. Accepts any valid CSS value. |
+| `className` | `string` | `""` | Optional CSS class name applied to the SVG container. |
+| `color` | `string` | `currentColor` | Sets the color of the SVG. Useful when SVG elements inherit color via `currentColor`. |
+| `style` | `React.CSSProperties` | `{}` | Inline styles applied directly to the SVG container. |
 
 ---
 
