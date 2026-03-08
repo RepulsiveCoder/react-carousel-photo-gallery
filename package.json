@@ -1,6 +1,6 @@
 {
   "name": "react-carousel-photo-gallery",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A lightweight, customizable React carousel component specifically designed for photo galleries, featuring thumbnail support, fullscreen mode, and flexible navigation overrides.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -9,21 +9,27 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "rollup": "rollup -c --bundleConfigAsCjs"
   },
-  "keywords": ["react", "carousel", "photo gallery", "thumbnail", "fullscreen"],
+  "keywords": [
+    "react",
+    "carousel",
+    "photo gallery",
+    "thumbnail",
+    "fullscreen"
+  ],
   "author": {
     "name": "Abdullah Ibne Alam",
     "url": "https://abdullahibnealam.com"
   },
   "license": "ISC",
   "peerDependencies": {
+    "@radix-ui/react-tooltip": "^1.2.8",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0",
-    "@radix-ui/react-tooltip": "^1.2.8"
+    "react-dom": ">=16.8.0"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
-    "@rollup/plugin-terser": "^0.4.4",
+    "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
     "@types/node": "^25.2.3",
     "@types/react": "^19.2.13",
@@ -34,5 +40,8 @@
     "rollup-plugin-postcss": "^4.0.2",
     "tslib": "^2.8.1",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "react-radix-tooltip": "^1.0.1"
   }
 }
