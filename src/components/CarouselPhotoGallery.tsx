@@ -34,6 +34,7 @@ const FullScreenExitIcon = ({height = '60px', width = '60px', className='', colo
 
 export type CarouselPhotoGalleryProps = {
     children: React.ReactNode[];
+    id?: string;
     slideDelay?: number;
     startIndex?: number;
     width?: string;
@@ -47,6 +48,7 @@ export type CarouselPhotoGalleryProps = {
 
 const CarouselPhotoGallery = ({
     children,
+    id = '',
     slideDelay = 5000,
     startIndex = 0,
     width = "900px",
@@ -158,7 +160,7 @@ const CarouselPhotoGallery = ({
 
 
     return (
-        <div className={`rcpg-content-wrapper ${maximized ? ' carouselMaximizedCover' : ''}`} style={{ width: !maximized && width ? `${width}px` : '100%' }} ref={CarouselPhotoGalleryWindowContainer}>
+        <div id={id} className={`rcpg-content-wrapper ${maximized ? ' carouselMaximizedCover' : ''}`} style={{ width: !maximized && width ? `${width}px` : '100%' }} ref={CarouselPhotoGalleryWindowContainer}>
             <span className={`closeButton ${maximized ? '' : 'hidden'}`} onClick={() => { if (fullscreenMode) setFullscreenMode(false); else setMaximized(false); }}>X</span>
             {maximized &&
                 <button className='fullscreenModeButton' onClick={() => setFullscreenMode((fullscreenMode) => !fullscreenMode)}
@@ -182,54 +184,57 @@ const CarouselPhotoGallery = ({
                         );
                     })}
 
-                    <div className={`carouselLinksContainer ${displayThumbs ? 'displayThumbs' : ''}`}>
-                        {children.map((item, index) => {
-                            return (
-                                <button
-                                    key={index}
-                                    className={`carouselBottomLinks ${activeIndex === index ? 'active' : ''} ${displayThumbs ? 'displayThumbs' : ''}`}
-                                    onClick={(e) => {
-                                        e.preventDefault();
-                                        resetSliderTimer();
-                                        setPrevIndex((index - 1 + children.length) % children.length);
-                                        setNextIndex((index + 1) % children.length);
-                                        setActiveIndex(index);
-                                    }}
+                    {children.length > 1 &&
+                    <>
+                        <div className={`carouselLinksContainer ${displayThumbs ? 'displayThumbs' : ''}`}>
+                            {children.map((item, index) => {
+                                return (
+                                    <button
+                                        key={index}
+                                        className={`carouselBottomLinks ${activeIndex === index ? 'active' : ''} ${displayThumbs ? 'displayThumbs' : ''}`}
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            resetSliderTimer();
+                                            setPrevIndex((index - 1 + children.length) % children.length);
+                                            setNextIndex((index + 1) % children.length);
+                                            setActiveIndex(index);
+                                        }}
+                                    >
+                                        {displayThumbs && thumbs.length > 0 && thumbs[index] && (
+                                            <RadixTooltip title={<>{thumbs[index]}</>}
+                                            >
+                                                <span>{thumbs[index]}</span>
+                                            </RadixTooltip>
+                                        )}
+                                    </button>
+                                );
+                            })}
+                        </div>
+
+                        <button className='carouselButtonPrev'
+                            onClick={(e) => { e.preventDefault(); slidePrev(true); }}
+                        >
+                            {displayThumbs && thumbs.length > 0 && thumbs[prevIndex] && (
+                                <RadixTooltip title={<>{thumbs[prevIndex]}</>}
                                 >
-                                    {displayThumbs && thumbs.length > 0 && thumbs[index] && (
-                                        <RadixTooltip title={<>{thumbs[index]}</>}
-                                        >
-                                            <span>{thumbs[index]}</span>
-                                        </RadixTooltip>
-                                    )}
-                                </button>
-                            );
-                        })}
-                    </div>
+                                    {prevButton ? prevButton : <span>⟨</span>}
+                                </RadixTooltip>
+                            )}
+                            {!(displayThumbs) && <>{prevButton ? prevButton : <span>⟨</span>}</>}
+                        </button>
 
-                    <button className='carouselButtonPrev'
-                        onClick={(e) => { e.preventDefault(); slidePrev(true); }}
-                    >
-                        {displayThumbs && thumbs.length > 0 && thumbs[prevIndex] && (
-                            <RadixTooltip title={<>{thumbs[prevIndex]}</>}
-                            >
-                                {prevButton ? prevButton : <span>⟨</span>}
-                            </RadixTooltip>
-                        )}
-                        {!(displayThumbs) && <>{prevButton ? prevButton : <span>⟨</span>}</>}
-                    </button>
-
-                    <button className='carouselButtonNext'
-                        onClick={(e) => { e.preventDefault(); slideNext(true); }}
-                    >
-                        {displayThumbs && thumbs.length > 0 && thumbs[nextIndex] && (
-                            <RadixTooltip title={<>{thumbs[nextIndex]}</>}
-                            >
-                                {nextButton ? nextButton : <span>⟩</span>}
-                            </RadixTooltip>
-                        )}
-                        {!(displayThumbs && thumbs.length > 0 && thumbs[nextIndex]) && <>{nextButton ? nextButton : <span>⟩</span>}</>}
-                    </button>
+                        <button className='carouselButtonNext'
+                            onClick={(e) => { e.preventDefault(); slideNext(true); }}
+                        >
+                            {displayThumbs && thumbs.length > 0 && thumbs[nextIndex] && (
+                                <RadixTooltip title={<>{thumbs[nextIndex]}</>}
+                                >
+                                    {nextButton ? nextButton : <span>⟩</span>}
+                                </RadixTooltip>
+                            )}
+                            {!(displayThumbs && thumbs.length > 0 && thumbs[nextIndex]) && <>{nextButton ? nextButton : <span>⟩</span>}</>}
+                        </button>
+                    </>}
                 </div>
             </div>
         </div>

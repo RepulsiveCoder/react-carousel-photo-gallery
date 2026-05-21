@@ -1,6 +1,6 @@
 {
   "name": "react-carousel-photo-gallery",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A lightweight, customizable React carousel component specifically designed for photo galleries, featuring thumbnail support, fullscreen mode, and flexible navigation overrides.",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -22,16 +22,16 @@
   },
   "license": "ISC",
   "peerDependencies": {
-    "react-radix-tooltip": "^1.1.2",
     "react": ">=16.8.0",
-    "react-dom": ">=16.8.0"
+    "react-dom": ">=16.8.0",
+    "react-radix-tooltip": "^1.1.2"
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.3",
     "@rollup/plugin-terser": "^1.0.0",
     "@rollup/plugin-typescript": "^12.3.0",
-    "@types/node": "^25.2.3",
+    "@types/node": "^25.9.1",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "react": "^19.2.4",
