@@ -37,6 +37,7 @@ export type CarouselPhotoGalleryProps = {
     id?: string;
     slideDelay?: number;
     startIndex?: number;
+    startMaximized?: boolean;
     width?: string;
     displayThumbs?: boolean;
     thumbs?: React.ReactNode[];
@@ -51,6 +52,7 @@ const CarouselPhotoGallery = ({
     id = '',
     slideDelay = 5000,
     startIndex = 0,
+    startMaximized = false,
     width = "900px",
     displayThumbs = false,
     thumbs = [],
@@ -62,7 +64,7 @@ const CarouselPhotoGallery = ({
     const [activeIndex, setActiveIndex] = React.useState(startIndex | 0);
     const [nextIndex, setNextIndex] = React.useState(((startIndex | 0) + 1) % children.length);
     const [prevIndex, setPrevIndex] = React.useState(((startIndex | 0) - 1 + children.length) % children.length);
-    const [maximized, setMaximized] = React.useState<boolean>(false);
+    const [maximized, setMaximized] = React.useState<boolean>(startMaximized);
     const [fullscreenMode, setFullscreenMode] = React.useState<boolean>(false);
     const CarouselPhotoGalleryWindowContainer = React.useRef<HTMLDivElement | null>(null);
     const intervalHandler = React.useRef<NodeJS.Timeout | null>(null);
