@@ -163,7 +163,7 @@ const CarouselPhotoGallery = ({
 
     return (
         <div id={id} className={`rcpg-content-wrapper ${maximized ? ' carouselMaximizedCover' : ''}`} style={{ width: !maximized && width ? `${width}px` : '100%' }} ref={CarouselPhotoGalleryWindowContainer}>
-            <span className={`closeButton ${maximized ? '' : 'hidden'}`} onClick={() => { if (fullscreenMode) setFullscreenMode(false); else setMaximized(false); }}>X</span>
+            {maximized && <span className={`closeButton ${maximized ? '' : 'hidden'}`} onClick={() => { if (fullscreenMode) setFullscreenMode(false); else setMaximized(false); }}>X</span>}
             {maximized &&
                 <button className='fullscreenModeButton' onClick={() => setFullscreenMode((fullscreenMode) => !fullscreenMode)}
                     title={fullscreenMode ? 'Exit Fullscreen' : 'Enter Fullscreen'}>

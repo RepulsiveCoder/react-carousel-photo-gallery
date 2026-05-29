@@ -1,5 +1,6 @@
 .rcpg-content-wrapper {
 
+    --rcpg-button-color: var(--primary-color, #FFFFFF);
     --rcpg-color-border: var(--border-color, #EDEDED99);
     --rcpg-accent-color: var(--accent-color, #36C2);
     --rcpg-accent-secondary-color: var(--accent-secondary-color, #36C2);
@@ -16,6 +17,7 @@
         position: fixed;
         background: var(--rcpg-color-background-maximized);
         top: 0px;
+        left: 0px;
         z-index: 150;
 
         .closeButton {
@@ -24,6 +26,7 @@
             top: 6px;
             cursor: pointer;
             padding: 1px 8px 0px;
+            color: var(--rcpg-button-color);
             border: 1px solid var(--rcpg-color-border);
             border-radius: 8px;
             transition: all 0.5s linear;
@@ -43,7 +46,9 @@
             position: absolute;
             right: 18px;
             bottom: 6px;
+            cursor: pointer;
             padding: 1px 4px 0px;
+            color: var(--rcpg-button-color);
             border: 1px solid var(--rcpg-color-border);
             border-radius: 8px;
             transition: all 0.5s linear;
@@ -88,8 +93,8 @@
             }
 
             .carouselItem img {
-                width: 100vw;
-                height: 100vh;
+                max-width: 100vw !important;
+                max-height: 100vh !important;
                 object-fit: contain;
             }
 
