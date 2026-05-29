@@ -27,3 +27,5 @@ lerna-debug.log*
 index.html
 index.tsx
 index-test.tsx
+
+/public
