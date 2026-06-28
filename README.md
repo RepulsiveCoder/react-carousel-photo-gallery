@@ -95,6 +95,7 @@ export default App;
 | `children` | `React.ReactNode[]` | **Required** | The slides to be displayed inside the carousel gallery. Each child represents a slide. |
 | `slideDelay` | `number` | `3000` | Delay in milliseconds between automatic slide transitions. |
 | `startIndex` | `number` | `0` | Index of the slide that should be displayed first when the carousel loads. |
+| `startMaximized` | `boolean` | `false` | Option to start the slideshow with Maximized. |
 | `width` | `string` | `"100%"` | Width of the carousel container. Accepts any valid CSS width value. |
 | `displayThumbs` | `boolean` | `false` | If set to `true`, thumbnail previews will be displayed below the main carousel. |
 | `thumbs` | `React.ReactNode[]` | `[]` | Optional thumbnail elements corresponding to each slide. |
@@ -102,6 +103,7 @@ export default App;
 | `prevButton` | `React.ReactElement` | `<span>⟨</span>` | Custom component used for the **Previous** navigation button. |
 | `fullScreenButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for entering fullscreen mode. |
 | `fullScreenExitButtonIcon` | `React.ReactElement` | `Default Icon` | Custom icon used for exiting fullscreen mode. |
+| `callback` | `(activeIndex: number, maximized?: boolean, fullscreenMode?: boolean) => void` | `Default Icon` | Callback funcion on any change. |
 
 
 ---

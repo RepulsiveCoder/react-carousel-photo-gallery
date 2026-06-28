@@ -45,6 +45,7 @@ export type CarouselPhotoGalleryProps = {
     prevButton?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
     fullScreenButtonIcon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
     fullScreenExitButtonIcon?: React.ReactElement<any, string | React.JSXElementConstructor<any>>;
+    callback?: (activeIndex: number, maximized?: boolean, fullscreenMode?: boolean) => void;
 }
 
 const CarouselPhotoGallery = ({
@@ -59,7 +60,8 @@ const CarouselPhotoGallery = ({
     nextButton = <span>⟩</span>,
     prevButton = <span>⟨</span>,
     fullScreenButtonIcon = <FullScreenIcon width='20px' height='16px' color='var(--accent-color)' />,
-    fullScreenExitButtonIcon = <FullScreenExitIcon width='20px' height='16px' color='var(--accent-color)' />
+    fullScreenExitButtonIcon = <FullScreenExitIcon width='20px' height='16px' color='var(--accent-color)' />,
+    callback
 }: CarouselPhotoGalleryProps) => {
     const [activeIndex, setActiveIndex] = React.useState(startIndex | 0);
     const [nextIndex, setNextIndex] = React.useState(((startIndex | 0) + 1) % children.length);
@@ -96,7 +98,12 @@ const CarouselPhotoGallery = ({
         } else if (document.fullscreenElement !== null && document.fullscreenElement === CarouselPhotoGalleryWindowContainer.current) {
             document.exitFullscreen();
         }
+        callback && callback(activeIndex, maximized, fullscreenMode);
     }, [fullscreenMode]);
+
+    React.useEffect(() => {
+        callback && callback(activeIndex, maximized, fullscreenMode);
+    }, [maximized]);
 
     const stopSliderTimer = () => {
         if (intervalHandler.current) {
@@ -126,7 +133,9 @@ const CarouselPhotoGallery = ({
         setActiveIndex((val) => {
             setPrevIndex((val) % children.length);
             setNextIndex((val + 2) % children.length);
-            return (val + 1) % children.length;
+            const activeIndex = (val + 1) % children.length;
+            callback && callback(activeIndex, maximized, fullscreenMode);
+            return activeIndex;
         });
     };
 
@@ -137,7 +146,9 @@ const CarouselPhotoGallery = ({
         setActiveIndex((val) => {
             setPrevIndex((val - 2 + children.length) % children.length);
             setNextIndex((val + 1) % children.length);
-            return (val - 1 + children.length) % children.length;
+            const activeIndex = (val - 1 + children.length) % children.length;
+            callback && callback(activeIndex, maximized, fullscreenMode);
+            return activeIndex;
         });
     };
 
