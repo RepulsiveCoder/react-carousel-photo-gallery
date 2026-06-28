@@ -93,6 +93,7 @@ export default App;
 | Prop | Type | Default | Description |
 |-----|------|---------|-------------|
 | `children` | `React.ReactNode[]` | **Required** | The slides to be displayed inside the carousel gallery. Each child represents a slide. |
+| `autoSlide` | `boolean` | `true` | Option to start auto slide. |
 | `slideDelay` | `number` | `3000` | Delay in milliseconds between automatic slide transitions. |
 | `startIndex` | `number` | `0` | Index of the slide that should be displayed first when the carousel loads. |
 | `startMaximized` | `boolean` | `false` | Option to start the slideshow with Maximized. |

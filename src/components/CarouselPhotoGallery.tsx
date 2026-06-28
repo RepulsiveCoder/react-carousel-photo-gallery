@@ -35,6 +35,7 @@ const FullScreenExitIcon = ({height = '60px', width = '60px', className='', colo
 export type CarouselPhotoGalleryProps = {
     children: React.ReactNode[];
     id?: string;
+    autoSlide?: boolean;
     slideDelay?: number;
     startIndex?: number;
     startMaximized?: boolean;
@@ -51,6 +52,7 @@ export type CarouselPhotoGalleryProps = {
 const CarouselPhotoGallery = ({
     children,
     id = '',
+    autoSlide = true,
     slideDelay = 5000,
     startIndex = 0,
     startMaximized = false,
@@ -80,7 +82,9 @@ const CarouselPhotoGallery = ({
             }
         };
 
-        intervalHandler.current = setInterval(() => { slideNextAuto(); }, slideDelay);
+        if (autoSlide) {
+            intervalHandler.current = setInterval(() => { slideNextAuto(); }, slideDelay);
+        }
         window.addEventListener('keydown', handleKeyDown);
         document.addEventListener('fullscreenchange', handleFullscreenChange);
 
@@ -124,7 +128,9 @@ const CarouselPhotoGallery = ({
     };
 
     const startSliderTimer = () => {
-        intervalHandler.current = setInterval(() => { slideNextAuto(); }, slideDelay);
+        if (autoSlide) {
+            intervalHandler.current = setInterval(() => { slideNextAuto(); }, slideDelay);
+        }
     };
 
     const resetSliderTimer = () => {
