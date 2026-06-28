@@ -71,6 +71,7 @@ const CarouselPhotoGallery = ({
     const CarouselPhotoGalleryWindowContainer = React.useRef<HTMLDivElement | null>(null);
     const intervalHandler = React.useRef<NodeJS.Timeout | null>(null);
     const pauseSlideShow = React.useRef<boolean>(false);
+    const stateRef = React.useRef({ activeIndex, maximized, fullscreenMode });
 
     React.useEffect(() => {
         const handleFullscreenChange = () => {
@@ -98,12 +99,23 @@ const CarouselPhotoGallery = ({
         } else if (document.fullscreenElement !== null && document.fullscreenElement === CarouselPhotoGalleryWindowContainer.current) {
             document.exitFullscreen();
         }
-        callback && callback(activeIndex, maximized, fullscreenMode);
+        callback && callback(activeIndex, stateRef.current.maximized, fullscreenMode);
     }, [fullscreenMode]);
 
     React.useEffect(() => {
-        callback && callback(activeIndex, maximized, fullscreenMode);
+        callback && callback(activeIndex, maximized, stateRef.current.fullscreenMode);
     }, [maximized]);
+
+    React.useEffect(() => {
+        stateRef.current = { activeIndex, maximized, fullscreenMode };
+    }, [activeIndex, maximized, fullscreenMode]);
+
+    const callBackCaller = React.useCallback((activeIndex: number) => {
+        if (callback) {
+            const { maximized: currentMaximized, fullscreenMode: currentFullscreen } = stateRef.current;
+            callback(activeIndex, currentMaximized, currentFullscreen);
+        }
+    }, [callback]);
 
     const stopSliderTimer = () => {
         if (intervalHandler.current) {
@@ -134,7 +146,7 @@ const CarouselPhotoGallery = ({
             setPrevIndex((val) % children.length);
             setNextIndex((val + 2) % children.length);
             const activeIndex = (val + 1) % children.length;
-            callback && callback(activeIndex, maximized, fullscreenMode);
+            callBackCaller(activeIndex);
             return activeIndex;
         });
     };
@@ -147,7 +159,7 @@ const CarouselPhotoGallery = ({
             setPrevIndex((val - 2 + children.length) % children.length);
             setNextIndex((val + 1) % children.length);
             const activeIndex = (val - 1 + children.length) % children.length;
-            callback && callback(activeIndex, maximized, fullscreenMode);
+            callBackCaller(activeIndex);
             return activeIndex;
         });
     };
